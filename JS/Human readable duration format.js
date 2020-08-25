@@ -8,7 +8,7 @@ function formatDuration (seconds) {
   }
 
   console.log(time);
-  let temp = Object.keys(time).map(e => [e, time[e]]).reduce(e => e[1] > 0);
+  let properTime = Object.keys(time).map(e => [e, time[e]]).filter(e => e[1] > 0);
   console.log(temp);
   return seconds;
 }
