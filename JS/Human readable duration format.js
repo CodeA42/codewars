@@ -1,24 +1,38 @@
 function formatDuration (seconds) {
   const time = {
-    second: seconds % 60,
-    minute: Math.floor(seconds / 60) % 60,
-    hour: Math.floor(seconds / 60 / 60) % 24,
+    year: Math.floor(seconds / 60 / 60 / 24 / 365),
     day: Math.floor(seconds / 60 / 60 / 24) % 365,
-    year: Math.floor(seconds / 60 / 60 / 24 / 365)
+    hour: Math.floor(seconds / 60 / 60) % 24,
+    minute: Math.floor(seconds / 60) % 60,
+    second: seconds % 60
   }
 
   const timeArr = Object.keys(time).map(e => [e, time[e]]);
-  const displayData = timeArr.filter(e => e[1] > 0);
-  const displayTime = displayData.map(function (e) {
-    let s = (e[1] > 1) ? 's' : ''; 
+  const filterZeros = timeArr.filter(e => e[1] > 0);
+  if(filterZeros == 0) {
+    return 'now';
+  }
+  const pluralize = filterZeros.map(function (e) {
+    const s = (e[1] > 1) ? 's' : ''; 
     return `${e[1]} ${e[0] + s}`
   });
-  console.log(displayTime);
-
-  // return properTime.forEach((e, i) => e);
-  return seconds;
+  const punctuation = pluralize.map(function (e, i, arr) {
+    let lineEding = '';
+    if(arr.length - i === 2) {
+      lineEding = ' and '
+    }
+    if(arr.length - i > 2) {
+      lineEding = ', '
+    }
+    return e + lineEding;
+  });
+  const final = punctuation.join('');
+  
+  return final;
 }
 
+// Tests
+console.log(formatDuration(0));
 console.log(formatDuration(1));
 console.log(formatDuration(62));
 console.log(formatDuration(120));
