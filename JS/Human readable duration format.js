@@ -1,15 +1,21 @@
 function formatDuration (seconds) {
-  let time = {
-    seconds: seconds % 60,
-    minutes: Math.floor(seconds / 60) % 60,
-    hours: Math.floor(seconds / 60 / 60) % 24,
-    days: Math.floor(seconds / 60 / 60 / 24) % 365,
-    years: Math.floor(seconds / 60 / 60 / 24 / 365)
+  const time = {
+    second: seconds % 60,
+    minute: Math.floor(seconds / 60) % 60,
+    hour: Math.floor(seconds / 60 / 60) % 24,
+    day: Math.floor(seconds / 60 / 60 / 24) % 365,
+    year: Math.floor(seconds / 60 / 60 / 24 / 365)
   }
 
-  console.log(time);
-  let properTime = Object.keys(time).map(e => [e, time[e]]).filter(e => e[1] > 0);
-  console.log(temp);
+  const timeArr = Object.keys(time).map(e => [e, time[e]]);
+  const displayData = timeArr.filter(e => e[1] > 0);
+  const displayTime = displayData.map(function (e) {
+    let s = (e[1] > 1) ? 's' : ''; 
+    return `${e[1]} ${e[0] + s}`
+  });
+  console.log(displayTime);
+
+  // return properTime.forEach((e, i) => e);
   return seconds;
 }
 
