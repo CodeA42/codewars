@@ -1,32 +1,47 @@
 class HashTable {
-  constructor(initialValue, additionalParams) {
-    if(initialValue) {
-      this.initialValue = initialValue;
-    }
-    this.hashFunc = additionalParams.hashFunc || HashTable.hash;
-    this.size =  additionalParams.size || 41;
+  constructor(params) {
+    this.collection = [];
+    this.hashFunc = params.hashFunc || HashTable.hash;
+    this.size =  params.size || 41;
   }
 
   add(key, value) {
     let index = this.hashFunc(key, this.size);
+    let done = false;
+    if(this.collection[index] === undefined) {
+      this.collection[index] = [[key, value]];
+      done = true;
+    }
+    if(!done) {
+      this.collection[index].map(function (e) {
+        if (e[0] === key) {
+          e[1] = value;
+          done = true;
+        }
+      });
+      if(!done) {
+        this.collectionp[index].push([key, value]);
+      }
+    }
+    return this;
   }
 
   search() {
 
   }
 
-  static hash(string, size) {
+  static hash(string, range) {
     let hash = 0, i, chr;
     for(i = 0; i < string.length; i++) {
       chr = string.charCodeAt(i);
       hash = ((hash << 5 ) - hash) + chr;
       hash |= 0;
     }
-    return Math.abs(hash % size);
+    return Math.abs(hash % range);
   }
 }
 
-
+// testing
 function randomStrings(entries, entriesSize) {
   let arr = [];
   for (let i = 0; i < entries; i++) {
