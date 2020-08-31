@@ -13,12 +13,13 @@ class HashTable {
       done = true;
     }
     if(!done) {
-      this.collection[index].map(function (e) {
-        if (e[0] === key) {
+      for (let i = 0; i < this.collection[index].length; i++) {
+        let e = this.collection[index][i];
+        if ([0] === key) {
           e[1] = value;
           done = true;
         }
-      });
+      }
       if(!done) {
         this.collectionp[index].push([key, value]);
       }
@@ -26,8 +27,18 @@ class HashTable {
     return this;
   }
 
-  search() {
+  search(key) {
+    let index = this.hashFunc(key, this.size);
 
+    let result = null;
+    if(this.collection[index] === undefined) {
+      result = false;
+    }
+
+    for (let i = 0; i < this.collection.length; i++) {
+
+   }
+    return result;
   }
 
   static hash(string, range) {
