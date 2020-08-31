@@ -8,7 +8,7 @@ class HashTable {
   add(key, value) {
     let index = this.hashFunc(key, this.size);
     let done = false;
-    if (this.collection[index] === undefined) {
+    if (this.collection[index] === undefined || this.collection[index].length == 0) {
       this.collection[index] = [[key, value]];
       done = true;
     }
