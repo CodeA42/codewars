@@ -1,8 +1,13 @@
 class HashTable {
-  constructor(params) {
-    this.collection = [];
-    this.hashFunc = params.hashFunc || HashTable.hash;
-    this.size = params.size || 41;
+  constructor(params = {}) {
+    const {
+      collection = [],
+      hashFunc = HashTable.hash,
+      size = 41
+    } = params;
+    this.collection = collection;
+    this.hashFunc = hashFunc;
+    this.size = size;
   }
 
   add(key, value) {
@@ -21,7 +26,7 @@ class HashTable {
         }
       }
       if (!done) {
-        this.collectionp[index].push([key, value]);
+        this.collection[index].push([key, value]);
       }
     }
     return this;
@@ -53,7 +58,13 @@ class HashTable {
   }
 }
 
+let ageTable = new HashTable;
+ageTable.add('sasho','15');
+ageTable.add('pesho','12');
+ageTable.add('dragan','50');
+ageTable.add('petkan','7');
 
+console.log(ageTable.search('sasho'));
 
 // testing
 // function randomStrings(entries, entriesSize) {
