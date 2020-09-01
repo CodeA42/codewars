@@ -69,32 +69,3 @@ class HashTable {
     return Math.abs(hash % range);
   }
 }
-
-let ageTable = new HashTable;
-// ageTable.add('sasho','15');
-ageTable.add('pesho','12');
-ageTable.add('dragan','50');
-ageTable.add('petkan','7');
-ageTable.print();
-console.log(ageTable.search('sasho'));
-
-// testing
-// function randomStrings(entries, entriesSize) {
-//   let arr = [];
-//   for (let i = 0; i < entries; i++) {
-//     let word = "";
-//     for (let j = 0; j < entriesSize; j++) {
-//       word += String.fromCharCode(97 + getRandomInt(26));
-//     }
-//     arr.push(word);
-//   }
-//   return arr;
-// }
-
-// function getRandomInt(max) {
-//   return Math.floor(Math.random() * Math.floor(max));
-// }
-
-// randomStrings(100, 10).forEach((e) =>
-//   console.log(HashTable.hash(e, 41) + " -> " + e)
-// );
