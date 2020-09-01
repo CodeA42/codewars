@@ -37,12 +37,24 @@ class HashTable {
 
     let result = null;
     let e = this.collection[index];
+
+    if(e === undefined) {
+      return false;
+    }
     for (let i = 0; i < e.length; i++) {
-      if (e[0] === key) {
-        result = e[1];
+      if (e[i][0] === key) {
+        result = e[i][1];
       }
     }
-    return !!result;
+    if(!result) {
+      result = false;
+    }
+
+    return result;
+  }
+
+  print() {
+    console.log(this.collection);
   }
 
   static hash(string, range) {
@@ -59,11 +71,11 @@ class HashTable {
 }
 
 let ageTable = new HashTable;
-ageTable.add('sasho','15');
+// ageTable.add('sasho','15');
 ageTable.add('pesho','12');
 ageTable.add('dragan','50');
 ageTable.add('petkan','7');
-
+ageTable.print();
 console.log(ageTable.search('sasho'));
 
 // testing
