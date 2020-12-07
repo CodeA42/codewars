@@ -1,6 +1,6 @@
 function checkExam(arr1, arr2) {
   let result = arr1.reduce((acc,e,i) => acc + ((arr1[i] === arr2[i]) ? 4 : (arr2[i].length) ? -1 : 0), 0);
-  return result < 0 ? 0 : result; 
+  return result < 0 ? 0 : result;
 }
 
 
