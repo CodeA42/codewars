@@ -1,3 +1,0 @@
-function treeToList(tree) {
-    
-}
